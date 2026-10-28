@@ -136,14 +136,14 @@ header.on{background:rgba(13,34,65,.88);backdrop-filter:blur(10px);-webkit-backd
 
 /* galeria antes/depois */
 .gal{background:linear-gradient(180deg,#0a1a33,var(--navy2) 60%,var(--navy));overflow:hidden}
-.marquee{--h:340px;overflow:hidden;padding:10px 0 6px;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.track{display:flex;gap:16px;width:max-content;animation:roll var(--dur,60s) linear infinite}
-.marquee:hover .track,.marquee.hold .track{animation-play-state:paused}
-@keyframes roll{to{transform:translateX(calc(-50% - 8px))}}
-.track figure{position:relative;height:var(--h);flex:none;border-radius:18px;overflow:hidden;background:#0d2241;box-shadow:0 14px 34px -14px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.08);transition:transform .3s}
+.marquee{--h:320px;overflow-x:auto;overflow-y:hidden;padding:12px 0 10px;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.marquee::-webkit-scrollbar{display:none}
+.marquee.drag{cursor:grabbing;user-select:none}
+.marquee.drag img{pointer-events:none}
+.track{display:flex;gap:16px;width:max-content;padding:0 8px}
+.track figure{position:relative;height:var(--h);width:var(--h);flex:none;border-radius:18px;overflow:hidden;background:#0d2241;box-shadow:0 14px 34px -14px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.08);transition:transform .3s}
 .track figure:hover{transform:translateY(-6px) scale(1.02)}
 .track figure img{height:100%;width:auto;display:block}
-.ba{aspect-ratio:var(--r)}
 .ba img{position:absolute;inset:0;width:100%!important;height:100%;object-fit:cover}
 .ba .aft{clip-path:inset(0 0 0 100%);animation:wipe 6s ease-in-out infinite var(--d,0s)}
 .ba .bar{position:absolute;top:0;bottom:0;left:100%;width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 14px rgba(182,224,43,.9);animation:bar 6s ease-in-out infinite var(--d,0s)}
@@ -154,7 +154,7 @@ header.on{background:rgba(13,34,65,.88);backdrop-filter:blur(10px);-webkit-backd
 .ba .lb.a{left:12px;background:#d9363e}
 .ba .lb.d{right:12px;background:#2c9a3a}
 .gal .cta{text-align:center;margin-top:2.2rem}
-@media (max-width:600px){.marquee{--h:270px}}
+@media (max-width:600px){.marquee{--h:min(300px,76vw)}}
 
 /* passos */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;counter-reset:s}
@@ -214,7 +214,6 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
-  .marquee{overflow-x:auto}
   .ba .aft{clip-path:inset(0 0 0 50%)}
   .ba .bar{left:50%}
 }
@@ -296,20 +295,18 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
 <section class="gal" id="galeria">
   <div class="wrap">
     <h2 class="rv">Antes <em>e depois</em></h2>
-    <p class="sub rv">Resultados reais dos nossos clientes. Passe o dedo ou o mouse para pausar.</p>
+    <p class="sub rv">Resultados reais dos nossos clientes. Arraste para ver mais.</p>
   </div>
   <div class="marquee rv" id="mq">
     <div class="track">
-      <figure class="ba" style="--r:720/355"><img src="galeria/ba2-antes.webp" width="720" height="355" alt="Sofá retrátil sujo antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba2-depois.webp" width="720" height="355" alt="Mesmo sofá limpo depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
-      <figure><img src="galeria/post1.webp" width="380" height="676" alt="Sofá azul antes e depois da lavagem a seco" loading="lazy"></figure>
-      <figure class="ba" style="--r:400/600;--d:-2s"><img src="galeria/ba1-antes.webp" width="400" height="600" alt="Assento de sofá manchado antes" loading="lazy"><img class="aft" src="galeria/ba1-depois.webp" width="400" height="600" alt="Assento de sofá limpo depois" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
-      <figure><img src="galeria/post2.webp" width="380" height="676" alt="Sofá de canto antes e depois da higienização" loading="lazy"></figure>
-      <figure class="ba" style="--r:720/355;--d:-4s"><img src="galeria/ba3-antes.webp" width="720" height="355" alt="Sofá cinza sujo antes" loading="lazy"><img class="aft" src="galeria/ba3-depois.webp" width="720" height="355" alt="Sofá cinza limpo depois" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
-      <figure><img src="galeria/post4.webp" width="380" height="676" alt="Sofá azul sujo e limpo" loading="lazy"></figure>
-      <figure><img src="galeria/post3.webp" width="380" height="676" alt="Sala com sofá higienizado" loading="lazy"></figure>
-      <figure class="ba" style="--r:720/355;--d:-1s"><img src="galeria/ba4-antes.webp" width="720" height="355" alt="Sofá capitonê sujo antes" loading="lazy"><img class="aft" src="galeria/ba4-depois.webp" width="720" height="355" alt="Sofá capitonê limpo depois" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
-      <figure><img src="galeria/post5.webp" width="380" height="538" alt="Sofá sujo e limpo após limpeza profunda" loading="lazy"></figure>
-      <figure><img src="galeria/post6.webp" width="380" height="676" alt="Sofá claro higienizado" loading="lazy"></figure>
+      <figure class="ba"><img src="galeria/ba1-antes.webp" width="480" height="480" alt="Assento de sofá manchado antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba1-depois.webp" width="480" height="480" alt="Assento de sofá manchado depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-3.4s"><img src="galeria/ba2-antes.webp" width="480" height="480" alt="Sofá retrátil cinza antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba2-depois.webp" width="480" height="480" alt="Sofá retrátil cinza depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-5.1s"><img src="galeria/ba3-antes.webp" width="480" height="480" alt="Sofá cinza com manchas antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba3-depois.webp" width="480" height="480" alt="Sofá cinza com manchas depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-0.8s"><img src="galeria/ba4-antes.webp" width="480" height="480" alt="Sofá capitonê antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba4-depois.webp" width="480" height="480" alt="Sofá capitonê depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-2.5s"><img src="galeria/ba5-antes.webp" width="480" height="480" alt="Sofá retrátil azul antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba5-depois.webp" width="480" height="480" alt="Sofá retrátil azul depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-4.2s"><img src="galeria/ba6-antes.webp" width="480" height="480" alt="Sofá de canto azul antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba6-depois.webp" width="480" height="480" alt="Sofá de canto azul depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-5.9s"><img src="galeria/ba7-antes.webp" width="480" height="480" alt="Sofá azul de dois lugares antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba7-depois.webp" width="480" height="480" alt="Sofá azul de dois lugares depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure class="ba" style="--d:-1.6s"><img src="galeria/ba8-antes.webp" width="480" height="480" alt="Sofá bege antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba8-depois.webp" width="480" height="480" alt="Sofá bege depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
     </div>
   </div>
   <div class="wrap cta rv"><a class="btn" data-wpp href="#"><svg><use href="#wa"/></svg>Quero meu sofá assim</a></div>
@@ -458,12 +455,44 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
   (function galeria(){
     var mq=document.getElementById('mq');if(!mq)return;
     var tr=mq.querySelector('.track');
-    [].slice.call(tr.children).forEach(function(f){var c=f.cloneNode(true);c.setAttribute('aria-hidden','true');tr.appendChild(c)});
-    function speed(){tr.style.setProperty('--dur',Math.round(tr.scrollWidth/2/45)+'s')}
-    speed();addEventListener('load',speed);
-    var t;
-    mq.addEventListener('touchstart',function(){clearTimeout(t);mq.classList.add('hold')},{passive:true});
-    mq.addEventListener('touchend',function(){t=setTimeout(function(){mq.classList.remove('hold')},1500)});
+    var orig=[].slice.call(tr.children);
+    orig.forEach(function(f){var c=f.cloneNode(true);c.setAttribute('aria-hidden','true');tr.appendChild(c)});
+    var period=0,pos=0,set=0,wait=0,last=0,vis=false,run=false;
+    function measure(){period=tr.children[orig.length].offsetLeft-tr.children[0].offsetLeft}
+    measure();addEventListener('resize',measure);
+    function hold(ms){wait=performance.now()+ms}
+    function wrap(){
+      if(!period)return;
+      if(mq.scrollLeft>=period){mq.scrollLeft-=period}
+      else if(mq.scrollLeft<=0){mq.scrollLeft+=period}
+    }
+    mq.addEventListener('scroll',function(){
+      if(Math.abs(mq.scrollLeft-set)<=2)return;
+      hold(2500);wrap();set=pos=mq.scrollLeft;
+    },{passive:true});
+    ['touchstart','wheel'].forEach(function(e){mq.addEventListener(e,function(){hold(2500)},{passive:true})});
+    var dx=null,sl=0,moved=0;
+    mq.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;dx=e.clientX;sl=mq.scrollLeft;moved=0;hold(1e9)});
+    addEventListener('pointermove',function(e){
+      if(dx===null)return;moved=Math.abs(e.clientX-dx);
+      if(moved>3)mq.classList.add('drag');
+      mq.scrollLeft=sl-(e.clientX-dx);
+    });
+    addEventListener('pointerup',function(){if(dx===null)return;dx=null;mq.classList.remove('drag');hold(2500)});
+    function step(t){
+      if(!vis||document.hidden){run=false;return}
+      var dt=Math.min(t-(last||t),50);last=t;
+      if(!reduce&&t>wait){
+        pos+=dt*.045;
+        if(period&&pos>=period)pos-=period;
+        mq.scrollLeft=pos;set=mq.scrollLeft;
+      }
+      requestAnimationFrame(step);
+    }
+    function start(){if(!run&&vis&&!document.hidden){run=true;last=0;requestAnimationFrame(step)}}
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting;start()}).observe(mq);
+    document.addEventListener('visibilitychange',start);
+    addEventListener('load',measure);
   })();
 
   function count(el){
