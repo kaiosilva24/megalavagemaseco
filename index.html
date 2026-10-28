@@ -192,10 +192,6 @@ details p{padding:0 20px 18px;color:var(--muted)}
 footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88rem;border-top:1px solid rgba(255,255,255,.06)}
 
 /* whatsapp flutuante */
-.fab{position:fixed;right:18px;bottom:18px;z-index:30;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 26px -6px rgba(37,211,102,.7);transition:transform .2s;animation:pop .6s 1.4s both}
-.fab:hover{transform:scale(1.08)}
-.fab svg{width:34px;height:34px;color:#fff}
-.fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:ring 2s infinite}
 @keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
 
 /* revelar ao rolar */
@@ -372,7 +368,6 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
   <div class="wrap">© <span id="y"></span> Mega Lavagem a Seco · Atendemos em domicílio</div>
 </footer>
 
-<a class="fab" data-wpp href="#" aria-label="Agendar pelo WhatsApp"><svg><use href="#wa"/></svg></a>
 
 <script>
 (function(){
