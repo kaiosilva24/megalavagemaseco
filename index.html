@@ -134,6 +134,28 @@ header.on{background:rgba(13,34,65,.88);backdrop-filter:blur(10px);-webkit-backd
 .card h3{font-size:1.15rem;margin-bottom:.35rem}
 .card p{color:#4b5f80;font-size:.95rem}
 
+/* galeria antes/depois */
+.gal{background:linear-gradient(180deg,#0a1a33,var(--navy2) 60%,var(--navy));overflow:hidden}
+.marquee{--h:340px;overflow:hidden;padding:10px 0 6px;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:16px;width:max-content;animation:roll var(--dur,60s) linear infinite}
+.marquee:hover .track,.marquee.hold .track{animation-play-state:paused}
+@keyframes roll{to{transform:translateX(calc(-50% - 8px))}}
+.track figure{position:relative;height:var(--h);flex:none;border-radius:18px;overflow:hidden;background:#0d2241;box-shadow:0 14px 34px -14px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.08);transition:transform .3s}
+.track figure:hover{transform:translateY(-6px) scale(1.02)}
+.track figure img{height:100%;width:auto;display:block}
+.ba{aspect-ratio:var(--r)}
+.ba img{position:absolute;inset:0;width:100%!important;height:100%;object-fit:cover}
+.ba .aft{clip-path:inset(0 0 0 100%);animation:wipe 6s ease-in-out infinite var(--d,0s)}
+.ba .bar{position:absolute;top:0;bottom:0;left:100%;width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 14px rgba(182,224,43,.9);animation:bar 6s ease-in-out infinite var(--d,0s)}
+.ba .bar::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px;border-radius:50%;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314260a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center/18px no-repeat;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+@keyframes wipe{0%,12%{clip-path:inset(0 0 0 100%)}42%,70%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 100%)}}
+@keyframes bar{0%,12%{left:100%}42%,70%{left:0%}100%{left:100%}}
+.ba .lb{position:absolute;top:12px;font:900 .72rem system-ui,sans-serif;letter-spacing:.06em;padding:5px 9px;border-radius:8px;color:#fff;z-index:2}
+.ba .lb.a{left:12px;background:#d9363e}
+.ba .lb.d{right:12px;background:#2c9a3a}
+.gal .cta{text-align:center;margin-top:2.2rem}
+@media (max-width:600px){.marquee{--h:270px}}
+
 /* passos */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;counter-reset:s}
 .step{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:28px 24px;position:relative}
@@ -192,6 +214,9 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
+  .marquee{overflow-x:auto}
+  .ba .aft{clip-path:inset(0 0 0 50%)}
+  .ba .bar{left:50%}
 }
 </style>
 </head>
@@ -266,6 +291,28 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
       <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8z"/></svg></div><h3>Impermeabilização</h3><p>Proteção contra líquidos e manchas para durar muito mais.</p></div>
     </div>
   </div>
+</section>
+
+<section class="gal" id="galeria">
+  <div class="wrap">
+    <h2 class="rv">Antes <em>e depois</em></h2>
+    <p class="sub rv">Resultados reais dos nossos clientes. Passe o dedo ou o mouse para pausar.</p>
+  </div>
+  <div class="marquee rv" id="mq">
+    <div class="track">
+      <figure class="ba" style="--r:720/355"><img src="galeria/ba2-antes.webp" width="720" height="355" alt="Sofá retrátil sujo antes da limpeza" loading="lazy"><img class="aft" src="galeria/ba2-depois.webp" width="720" height="355" alt="Mesmo sofá limpo depois da higienização" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure><img src="galeria/post1.webp" width="380" height="676" alt="Sofá azul antes e depois da lavagem a seco" loading="lazy"></figure>
+      <figure class="ba" style="--r:400/600;--d:-2s"><img src="galeria/ba1-antes.webp" width="400" height="600" alt="Assento de sofá manchado antes" loading="lazy"><img class="aft" src="galeria/ba1-depois.webp" width="400" height="600" alt="Assento de sofá limpo depois" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure><img src="galeria/post2.webp" width="380" height="676" alt="Sofá de canto antes e depois da higienização" loading="lazy"></figure>
+      <figure class="ba" style="--r:720/355;--d:-4s"><img src="galeria/ba3-antes.webp" width="720" height="355" alt="Sofá cinza sujo antes" loading="lazy"><img class="aft" src="galeria/ba3-depois.webp" width="720" height="355" alt="Sofá cinza limpo depois" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure><img src="galeria/post4.webp" width="380" height="676" alt="Sofá azul sujo e limpo" loading="lazy"></figure>
+      <figure><img src="galeria/post3.webp" width="380" height="676" alt="Sala com sofá higienizado" loading="lazy"></figure>
+      <figure class="ba" style="--r:720/355;--d:-1s"><img src="galeria/ba4-antes.webp" width="720" height="355" alt="Sofá capitonê sujo antes" loading="lazy"><img class="aft" src="galeria/ba4-depois.webp" width="720" height="355" alt="Sofá capitonê limpo depois" loading="lazy"><span class="lb a">ANTES</span><span class="lb d">DEPOIS</span><i class="bar"></i></figure>
+      <figure><img src="galeria/post5.webp" width="380" height="538" alt="Sofá sujo e limpo após limpeza profunda" loading="lazy"></figure>
+      <figure><img src="galeria/post6.webp" width="380" height="676" alt="Sofá claro higienizado" loading="lazy"></figure>
+    </div>
+  </div>
+  <div class="wrap cta rv"><a class="btn" data-wpp href="#"><svg><use href="#wa"/></svg>Quero meu sofá assim</a></div>
 </section>
 
 <section id="como">
@@ -406,6 +453,17 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.88re
     }
     new IntersectionObserver(function(es){on=es[0].isIntersecting;start()}).observe(stage);
     document.addEventListener('visibilitychange',start);
+  })();
+
+  (function galeria(){
+    var mq=document.getElementById('mq');if(!mq)return;
+    var tr=mq.querySelector('.track');
+    [].slice.call(tr.children).forEach(function(f){var c=f.cloneNode(true);c.setAttribute('aria-hidden','true');tr.appendChild(c)});
+    function speed(){tr.style.setProperty('--dur',Math.round(tr.scrollWidth/2/45)+'s')}
+    speed();addEventListener('load',speed);
+    var t;
+    mq.addEventListener('touchstart',function(){clearTimeout(t);mq.classList.add('hold')},{passive:true});
+    mq.addEventListener('touchend',function(){t=setTimeout(function(){mq.classList.remove('hold')},1500)});
   })();
 
   function count(el){
